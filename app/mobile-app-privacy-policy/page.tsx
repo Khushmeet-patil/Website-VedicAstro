@@ -1,221 +1,99 @@
-import { Separator } from "@/components/ui/separator"
+import { getPolicy } from '@/lib/api';
 
-export default function MobileAppPrivacyPolicy() {
+export default async function MobileAppPrivacyPolicy() {
+    const policy = await getPolicy('mobile-app-privacy-policy');
+
+    if (policy) {
+        return (
+            <main className="max-w-4xl mx-auto px-4 pt-32 pb-12 text-justify font-sans text-gray-800">
+                <h1 className="text-3xl font-bold text-center mb-4">{policy.title}</h1>
+                <p className="text-sm text-gray-500 mb-8 text-center">Last Updated: {new Date(policy.lastUpdated).toLocaleDateString()}</p>
+                <div
+                    className="space-y-4 [&>h2]:text-xl [&>h2]:font-bold [&>h2]:mb-2 [&>h3]:text-lg [&>h3]:font-bold [&>h3]:mb-2 [&>p]:mb-4 [&>ul]:list-disc [&>ul]:pl-5 [&>ul]:mb-4"
+                    dangerouslySetInnerHTML={{ __html: policy.content }}
+                />
+            </main>
+        );
+    }
+
     return (
-        <main className="container mx-auto px-4 py-24 max-w-4xl">
-            <h1 className="text-4xl font-serif font-bold mb-2">Privacy Policy</h1>
-            <h2 className="text-xl text-primary font-medium mb-6">Vedic.Astro Mobile Application</h2>
+        <main className="max-w-4xl mx-auto px-4 pt-32 pb-12 text-justify font-sans text-gray-800">
+            <h1 className="text-3xl font-bold text-center mb-4">Privacy Policy</h1>
+            <h2 className="text-xl font-semibold text-center mb-8">Vedic.Astro Mobile Application</h2>
 
-            <p className="text-sm text-muted-foreground mb-8">Effective Date: {new Date().toLocaleDateString()}</p>
+            <p className="text-sm text-gray-500 mb-8 text-center">Last Updated: {new Date().toLocaleDateString()}</p>
 
-            <div className="bg-secondary/10 p-4 rounded-lg border border-secondary/20 mb-8">
-                <p className="font-medium text-secondary">
-                    Vedic.Astro respects your privacy and is committed to protecting your personal information.
-                </p>
-            </div>
-
-            <div className="prose prose-slate max-w-none dark:prose-invert space-y-8">
+            <div className="space-y-6">
                 <section>
-                    <p>
-                        Vedic.Astro (“Company”, “we”, “our”, “us”) respects your privacy and is committed to protecting your personal information. This Privacy Policy explains how we collect, use, store, disclose, and safeguard your information when you use our mobile application Vedic.Astro and related services.
+                    <p className="mb-4">
+                        This Privacy Policy governs your use of the "Vedic.Astro" mobile application.
                     </p>
-                    <p className="mt-4">
-                        By downloading, installing, or using our application, you agree to the practices described in this Privacy Policy.
+                    <p className="font-bold mb-2">We value your trust and are committed to protecting your personal information.</p>
+                </section>
+
+                <section>
+                    <h3 className="text-xl font-bold mb-3">1. Information We Collect</h3>
+                    <p className="mb-2">We may collect the following types of information:</p>
+                    <ul className="list-disc pl-5 space-y-2 mb-4">
+                        <li><strong>Personal Information:</strong> Name, phone number, email address, date of birth, place of birth, and time of birth.</li>
+                        <li><strong>Usage Data:</strong> Information about how you use the app, such as features accessed and time spent.</li>
+                        <li><strong>Device Information:</strong> Device model, operating system, and unique device identifiers.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3 className="text-xl font-bold mb-3">2. How We Use Your Information</h3>
+                    <p className="mb-2">We use the collected information for:</p>
+                    <ul className="list-disc pl-5 space-y-2 mb-4">
+                        <li>Providing astrological services and reports.</li>
+                        <li>Connecting you with astrologers.</li>
+                        <li>Improving app functionality and user experience.</li>
+                        <li>Sending service-related updates and notifications.</li>
+                        <li>Customer support and dispute resolution.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3 className="text-xl font-bold mb-3">3. Data Sharing and Disclosure</h3>
+                    <p className="mb-2">We do NOT sell your personal information. We may share data with:</p>
+                    <ul className="list-disc pl-5 space-y-2 mb-4">
+                        <li><strong>Astrologers:</strong> To provide consultation services (only necessary details).</li>
+                        <li><strong>Service Providers:</strong> Third-party vendors for payment processing, hosting, and analytics.</li>
+                        <li><strong>Legal Requirements:</strong> If required by law or to protect our rights.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3 className="text-xl font-bold mb-3">4. Data Security</h3>
+                    <p className="mb-4">
+                        We implement reasonable security measures to protect your data. However, no method of transmission over the internet is 100% secure.
                     </p>
                 </section>
 
-                <Separator />
-
                 <section>
-                    <h3 className="text-2xl font-semibold mb-4">1. Information We Collect</h3>
-
-                    <div className="space-y-4">
-                        <div>
-                            <h4 className="font-semibold text-lg mb-2">1.1 Personal Information</h4>
-                            <p>When you use our app, we may collect:</p>
-                            <ul className="list-disc pl-6 mt-2 space-y-1">
-                                <li>Full Name</li>
-                                <li>Date of Birth</li>
-                                <li>Time of Birth</li>
-                                <li>Place of Birth</li>
-                                <li>Gender</li>
-                                <li>Phone Number</li>
-                                <li>Email Address</li>
-                                <li>Profile Photo (optional)</li>
-                                <li>Payment details (for purchases)</li>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h4 className="font-semibold text-lg mb-2">1.2 Non-Personal Information</h4>
-                            <ul className="list-disc pl-6 mt-2 space-y-1">
-                                <li>Device type & model</li>
-                                <li>Operating system</li>
-                                <li>App version</li>
-                                <li>IP Address</li>
-                                <li>Location (approximate GPS)</li>
-                                <li>Usage behavior</li>
-                                <li>Crash logs & analytics</li>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h4 className="font-semibold text-lg mb-2">1.3 Automatically Collected Data</h4>
-                            <ul className="list-disc pl-6 mt-2 space-y-1">
-                                <li>Cookies</li>
-                                <li>App usage statistics</li>
-                                <li>Session information</li>
-                                <li>Interaction with features</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-
-                <section>
-                    <h3 className="text-2xl font-semibold mb-4">2. How We Use Your Information</h3>
-                    <p>We use collected information to:</p>
-                    <ul className="list-disc pl-6 mt-2 space-y-1">
-                        <li>Generate horoscope, kundli, numerology & astrology predictions</li>
-                        <li>Provide astrology consultation services</li>
-                        <li>Enable chat/call with astrologers</li>
-                        <li>Process payments</li>
-                        <li>Send order confirmations</li>
-                        <li>Provide customer support</li>
-                        <li>Improve app performance</li>
-                        <li>Personalize user experience</li>
-                        <li>Send offers, promotions & notifications</li>
-                        <li>Prevent fraud and misuse</li>
+                    <h3 className="text-xl font-bold mb-3">5. User Rights</h3>
+                    <p className="mb-2">You have the right to:</p>
+                    <ul className="list-disc pl-5 space-y-2 mb-4">
+                        <li>Access your personal data.</li>
+                        <li>Request correction of inaccurate data.</li>
+                        <li>Request deletion of your account and data.</li>
                     </ul>
                 </section>
 
                 <section>
-                    <h3 className="text-2xl font-semibold mb-4">3. Payments & Transactions</h3>
-                    <p>For paid services, we use secure third-party payment gateways such as:</p>
-                    <ul className="list-disc pl-6 mt-2 space-y-1">
-                        <li>Google Play Billing</li>
-                        <li>Razorpay / Stripe / Paytm (if applicable)</li>
-                    </ul>
-                    <p className="mt-2 font-bold text-destructive">We do not store your card or banking details on our servers.</p>
+                    <h3 className="text-xl font-bold mb-3">6. Changes to this Policy</h3>
+                    <p className="mb-4">
+                        We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page.
+                    </p>
                 </section>
 
                 <section>
-                    <h3 className="text-2xl font-semibold mb-4">4. Data Sharing & Disclosure</h3>
-                    <p className="font-bold">We DO NOT sell your personal information.</p>
-                    <p className="mt-2">We may share data only with:</p>
-                    <ul className="list-disc pl-6 mt-2 space-y-1">
-                        <li>Verified astrologers (for consultation services only)</li>
-                        <li>Payment processors</li>
-                        <li>Analytics providers</li>
-                        <li>Legal authorities (if required by law)</li>
-                        <li>Cloud storage providers</li>
-                    </ul>
-                    <p className="mt-2 text-sm text-muted-foreground">All third parties are bound by confidentiality agreements.</p>
-                </section>
-
-                <section>
-                    <h3 className="text-2xl font-semibold mb-4">5. Data Storage & Security</h3>
-                    <p>We use:</p>
-                    <ul className="list-disc pl-6 mt-2 space-y-1">
-                        <li>SSL encryption</li>
-                        <li>Secure cloud servers</li>
-                        <li>Restricted database access</li>
-                        <li>Regular monitoring</li>
-                    </ul>
-                    <p className="mt-2 text-sm">However, no method is 100% secure. We strive to protect your data with industry standards.</p>
-                </section>
-
-                <section>
-                    <h3 className="text-2xl font-semibold mb-4">6. Cookies & Tracking Technologies</h3>
-                    <p>We may use cookies or SDKs for:</p>
-                    <ul className="list-disc pl-6 mt-2 space-y-1">
-                        <li>Login sessions</li>
-                        <li>Analytics</li>
-                        <li>Ads optimization</li>
-                        <li>Performance improvement</li>
-                    </ul>
-                    <p className="mt-2 text-sm">You can disable cookies from device settings.</p>
-                </section>
-
-                <section>
-                    <h3 className="text-2xl font-semibold mb-4">7. User Rights</h3>
-                    <p>You have the right to:</p>
-                    <ul className="list-disc pl-6 mt-2 space-y-1">
-                        <li>Access your data</li>
-                        <li>Update information</li>
-                        <li>Delete your account</li>
-                        <li>Withdraw consent</li>
-                        <li>Opt-out of marketing notifications</li>
-                    </ul>
-                    <p className="mt-4">To request changes, contact us at: <a href="mailto:support@vedicastro.com" className="text-primary hover:underline">support@vedicastro.com</a></p>
-                </section>
-
-                <section>
-                    <h3 className="text-2xl font-semibold mb-4">8. Children’s Privacy</h3>
-                    <ul className="list-disc pl-6 mt-2 space-y-1">
-                        <li>Our services are not intended for children under 18.</li>
-                        <li>We do not knowingly collect information from minors.</li>
+                    <h3 className="text-xl font-bold mb-3">7. Contact Us</h3>
+                    <p className="mb-2">If you have any questions about this Privacy Policy, please contact us:</p>
+                    <ul className="list-none space-y-2">
+                        <li>📧 <a href="mailto:support@vedic.store" className="text-blue-600 hover:underline">support@vedic.store</a></li>
                     </ul>
                 </section>
-
-                <section>
-                    <h3 className="text-2xl font-semibold mb-4">9. Third-Party Links</h3>
-                    <ul className="list-disc pl-6 mt-2 space-y-1">
-                        <li>Our app may contain links to external websites.</li>
-                        <li>We are not responsible for their privacy practices.</li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h3 className="text-2xl font-semibold mb-4">10. Data Retention</h3>
-                    <p>We retain your data:</p>
-                    <ul className="list-disc pl-6 mt-2 space-y-1">
-                        <li>As long as account is active</li>
-                        <li>For legal compliance</li>
-                        <li>For improving services</li>
-                    </ul>
-                    <p className="mt-2 text-sm">You may request deletion anytime.</p>
-                </section>
-
-                <section>
-                    <h3 className="text-2xl font-semibold mb-4">11. Advertising & Analytics</h3>
-                    <p>We may use Google Analytics, Firebase, and Google AdMob.</p>
-                    <p className="mt-2 text-sm">These services may collect anonymized data to show relevant ads and improve experience.</p>
-                </section>
-
-                <section>
-                    <h3 className="text-2xl font-semibold mb-4">12. Refund & Cancellation</h3>
-                    <p>All refunds and cancellations are governed by our separate <a href="/return-refund-policy" className="text-primary hover:underline">Refund Policy</a>, available inside the app or website.</p>
-                </section>
-
-                <section>
-                    <h3 className="text-2xl font-semibold mb-4">13. Changes to Privacy Policy</h3>
-                    <p>We may update this policy periodically.</p>
-                    <p>Changes will be posted inside the app.</p>
-                    <p className="font-medium">Continued use means acceptance of updated policy.</p>
-                </section>
-
-                <section>
-                    <h3 className="text-2xl font-semibold mb-4">14. Consent</h3>
-                    <p>By using Vedic.Astro, you consent to this Privacy Policy and data practices.</p>
-                </section>
-
-                <section className="bg-muted p-6 rounded-lg mt-8">
-                    <h3 className="text-xl font-semibold mb-4">15. Contact Us</h3>
-                    <div className="space-y-3">
-                        <p>If you have any questions:</p>
-                        <p><strong>Vedic.Astro Support Team</strong></p>
-                        <div className="flex items-center gap-2">
-                            <span>📧</span>
-                            <a href="mailto:support@vedicastro.com" className="text-primary hover:underline">support@vedicastro.com</a>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <span>🌐</span>
-                            <a href="https://www.vedicastro.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">www.vedicastro.com</a>
-                        </div>
-                        <p><strong>Address:</strong> [Your Company Address]</p>
-                    </div>
-                </section>
-
             </div>
         </main>
     )
