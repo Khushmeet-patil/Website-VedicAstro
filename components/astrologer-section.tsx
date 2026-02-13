@@ -1,8 +1,14 @@
+"use client"
+
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { TrendingUp, Clock, Globe } from "lucide-react"
+import { ApplyAstrologerModal } from "@/components/apply-astrologer-modal"
 
 export function AstrologerSection() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
   const benefits = [
     {
       icon: TrendingUp,
@@ -60,7 +66,11 @@ export function AstrologerSection() {
               })}
             </div>
 
-            <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-foreground rounded-full font-semibold w-fit">
+            <Button
+              size="lg"
+              className="bg-secondary hover:bg-secondary/90 text-foreground rounded-full font-semibold w-fit"
+              onClick={() => setIsModalOpen(true)}
+            >
               Apply as Astrologer
             </Button>
           </div>
@@ -100,6 +110,8 @@ export function AstrologerSection() {
           </div>
         </div>
       </div>
+
+      <ApplyAstrologerModal open={isModalOpen} onOpenChange={setIsModalOpen} />
     </section>
   )
 }

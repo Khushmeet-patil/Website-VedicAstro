@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Playfair_Display, Inter } from 'next/font/google'
+import { Toaster } from "@/components/ui/sonner"
 
 import './globals.css'
 import { Navbar } from '@/components/navbar'
@@ -31,6 +32,7 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         <Navbar />
         {children}
+        <Toaster richColors />
       </body>
     </html>
   )
