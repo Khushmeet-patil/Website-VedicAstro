@@ -43,6 +43,7 @@ export function FooterSection() {
               <li><a href="/terms-of-usage" className="hover:text-background transition-colors">Terms of Usage</a></li>
               <li><a href="/pricing-policy" className="hover:text-background transition-colors">Pricing Policy — Vedic.Astro / Vedic.Store</a></li>
               <li><a href="/about-us" className="hover:text-background transition-colors">About Us — Vedic.Astro</a></li>
+              <li><a href="/contact-us" className="hover:text-background transition-colors">Contact Us — Vedic.Astro</a></li>
               <li><a href="/disclaimer" className="hover:text-background transition-colors">Disclaimer — Vedic.Astro</a></li>
             </ul>
           </div>
