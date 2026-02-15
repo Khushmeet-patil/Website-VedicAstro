@@ -1,7 +1,31 @@
 import { Separator } from "@/components/ui/separator"
 import { Apple, Play, Mail, MapPin, Phone } from "lucide-react"
 
+import { useState, useEffect } from "react"
 export function FooterSection() {
+  const [socialLinks, setSocialLinks] = useState({
+    instagram: 'https://instagram.com',
+    facebook: 'https://facebook.com',
+    linkedin: 'https://linkedin.com',
+    youtube: 'https://youtube.com',
+    website: 'https://vedicastro.com'
+  });
+
+  useEffect(() => {
+    const fetchLinks = async () => {
+      try {
+        const response = await fetch('https://va-backend-6acx.onrender.com/api/admin/settings/socialMediaLinks');
+        const data = await response.json();
+        if (data.success && data.data) {
+          setSocialLinks(data.data.value);
+        }
+      } catch (error) {
+        console.error('Failed to fetch social links', error);
+      }
+    };
+    fetchLinks();
+  }, []);
+
   return (
     <footer className="bg-foreground text-background">
       <div className="container mx-auto px-4 py-16">
@@ -100,10 +124,10 @@ export function FooterSection() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 text-sm text-background/70">
           <p>&copy; 2024 VedicAstro. All rights reserved.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-background transition-colors">Youtube</a>
-            <a href="#" className="hover:text-background transition-colors">Facebook</a>
-            <a href="#" className="hover:text-background transition-colors">Instagram</a>
-            <a href="#" className="hover:text-background transition-colors">LinkedIn</a>
+            {socialLinks.youtube && <a href={socialLinks.youtube} target="_blank" rel="noopener noreferrer" className="hover:text-background transition-colors">Youtube</a>}
+            {socialLinks.facebook && <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer" className="hover:text-background transition-colors">Facebook</a>}
+            {socialLinks.instagram && <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-background transition-colors">Instagram</a>}
+            {socialLinks.linkedin && <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-background transition-colors">LinkedIn</a>}
           </div>
         </div>
       </div>
